@@ -2,24 +2,29 @@
 
 import { useMemo, useState } from 'react';
 
-export interface Column<T extends object> {
+export interface Column<T> {
   key: keyof T | string;
   label: string;
   sortable?: boolean;
   render?: (row: T) => React.ReactNode;
 }
 
-interface DataTableProps<T extends object> {
+interface DataTableProps<T extends Record<string, unknown>> {
   columns: Column<T>[];
   data: T[];
-  rowKey: keyof T | ((row: T) => string | number);
+  rowKey: keyof T | string;
+  searchable?: boolean;
+  searchKeys?: (keyof T)[];
   pageSize?: number;
 }
 
-export default function DataTable<T extends object>({
+
+export default function DataTable<T extends Record<string, unknown>>({
   columns,
   data,
   rowKey,
+  searchable = false,
+  searchKeys = [],
   pageSize = 10,
 }: DataTableProps<T>) {
   const [currentPage, setCurrentPage] = useState(1);

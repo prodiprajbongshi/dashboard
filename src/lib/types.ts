@@ -97,15 +97,15 @@ export interface TeamMember {
 }
 
 // ─── Revenue ──────────────────────────────────────────────────────────────────
-export interface RevenueEntry {
+export type RevenueEntry = {
   id: string;
   customer: string;
-  plan: 'Free' | 'Pro' | 'Enterprise';
+  plan: string;
   mrr: number;
-  status: 'active' | 'churned' | 'trial';
-  startDate: Date;
+  status: string;
   country: string;
-}
+  startDate: string;
+};
 
 // ─── Traffic ──────────────────────────────────────────────────────────────────
 export interface PageViewEntry {
@@ -128,13 +128,12 @@ export interface UserEntry {
   id: string;
   name: string;
   email: string;
-  plan: 'Free' | 'Pro' | 'Enterprise';
+  plan: string;
   country: string;
-  signedUp: Date;
-  status: 'active' | 'inactive' | 'trial';
   sessions: number;
+  status: string;
+  signedUp: string;
 }
-
 // ─── Activity ─────────────────────────────────────────────────────────────────
 export interface ActivityItem {
   id: string;

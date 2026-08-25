@@ -105,6 +105,7 @@ export type RevenueEntry = {
   status: string;
   country: string;
   startDate: string;
+  [key: string]: unknown;
 };
 
 // ─── Traffic ──────────────────────────────────────────────────────────────────
@@ -114,6 +115,7 @@ export interface PageViewEntry {
   uniqueVisitors: number;
   avgDuration: string;
   bounceRate: number;
+  [key: string]: unknown;
 }
 
 export interface ReferrerEntry {
@@ -121,6 +123,7 @@ export interface ReferrerEntry {
   sessions: number;
   percentage: number;
   change: number;
+  [key: string]: unknown;
 }
 
 // ─── User Table ───────────────────────────────────────────────────────────────
@@ -133,6 +136,7 @@ export interface UserEntry {
   sessions: number;
   status: string;
   signedUp: string;
+  [key: string]: unknown;
 }
 // ─── Activity ─────────────────────────────────────────────────────────────────
 export interface ActivityItem {

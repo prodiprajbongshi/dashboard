@@ -22,8 +22,8 @@ export function formatPercent(value: number, decimals = 1): string {
 }
 
 // ─── Date Formatting ──────────────────────────────────────────────────────────
-export function formatDate(date: Date, pattern = 'MMM dd, yyyy'): string {
-  return format(date, pattern);
+export function formatDate(date: Date | string, pattern = 'MMM dd, yyyy'): string {
+  return format(typeof date === 'string' ? new Date(date) : date, pattern);
 }
 
 export function formatRelative(date: Date): string {

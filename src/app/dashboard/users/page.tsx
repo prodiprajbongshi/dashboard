@@ -5,6 +5,7 @@ import AreaChartWidget from '@/components/charts/AreaChart';
 import BarChartWidget from '@/components/charts/BarChart';
 import DonutChart from '@/components/charts/DonutChart';
 import DataTable from '@/components/dashboard/DataTable';
+import type { DataTableProps } from '@/components/dashboard/DataTable';
 import DateRangePicker from '@/components/dashboard/DateRangePicker';
 import Button from '@/components/ui/Button';
 import Avatar from '@/components/ui/Avatar';
@@ -24,7 +25,7 @@ const newVsReturning = userGrowthSeries.slice(-7).map(d => ({
 export default function UsersPage() {
   const { range, selectedOption, setOption } = useDateRange('30d');
 
-  const columns = [
+  const columns: DataTableProps<UserEntry>['columns'] = [
     { key: 'name', label: 'User', sortable: true,
       render: (r: UserEntry) => (
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -104,12 +105,12 @@ export default function UsersPage() {
             Users
             <span style={{ fontSize: 13, color: '#475569', fontWeight: 400, marginLeft: 8 }}>({mockUsers.length} total)</span>
           </div>
-          <DataTable
-            columns={columns as Parameters<typeof DataTable>[0]['columns']}
-            data={mockUsers as unknown as Record<string, unknown>[]}
+          <DataTable<UserEntry>
+            columns={columns}
+            data={mockUsers}
             rowKey="id"
             searchable
-            searchKeys={['name', 'email', 'country'] as never[]}
+            searchKeys={['name', 'email', 'country']}
             pageSize={6}
           />
         </div>

@@ -9,7 +9,7 @@ export interface Column<T> {
   render?: (row: T) => React.ReactNode;
 }
 
-interface DataTableProps<T extends Record<string, unknown>> {
+export interface DataTableProps<T extends Record<string, unknown>> {
   columns: Column<T>[];
   data: T[];
   rowKey: keyof T | string;
@@ -117,11 +117,7 @@ export default function DataTable<T extends Record<string, unknown>>({
     row: T,
     index: number
   ): string | number => {
-    if (typeof rowKey === 'function') {
-      return rowKey(row);
-    }
-
-    const value = row[rowKey];
+    const value = row[rowKey as keyof T];
 
     if (
       value !== undefined &&

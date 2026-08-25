@@ -182,7 +182,7 @@ export const mockRevenueEntries: RevenueEntry[] = Array.from({ length: 20 }, (_,
     plan,
     mrr: plan === 'Free' ? 0 : plan === 'Pro' ? randomBetween(49, 99) : randomBetween(499, 999),
     status: statuses[i % statuses.length],
-    startDate: subMonths(new Date(), randomBetween(1, 24)),
+    startDate: format(subMonths(new Date(), randomBetween(1, 24)), 'yyyy-MM-dd'),
     country: COUNTRIES[i % COUNTRIES.length],
   };
 });
@@ -218,7 +218,7 @@ export const mockUsers: UserEntry[] = NAMES.slice(0, 15).map((name, i) => {
     email: `${name.toLowerCase().replace(' ', '.')}@example.com`,
     plan: plans[i % 3],
     country: COUNTRIES[i % COUNTRIES.length],
-    signedUp: subMonths(new Date(), randomBetween(1, 24)),
+    signedUp: format(subMonths(new Date(), randomBetween(1, 24)), 'yyyy-MM-dd'),
     status: statuses[i % statuses.length],
     sessions: randomBetween(5, 200),
   };

@@ -5,6 +5,7 @@ import AreaChartWidget from '@/components/charts/AreaChart';
 import BarChartWidget from '@/components/charts/BarChart';
 import DonutChart from '@/components/charts/DonutChart';
 import DataTable from '@/components/dashboard/DataTable';
+import type { DataTableProps } from '@/components/dashboard/DataTable';
 import DateRangePicker from '@/components/dashboard/DateRangePicker';
 import Button from '@/components/ui/Button';
 
@@ -42,7 +43,7 @@ export default function TrafficPage() {
     setOption,
   } = useDateRange('30d');
 
-  const pageColumns = [
+  const pageColumns: DataTableProps<PageViewEntry>['columns'] = [
     {
       key: 'page',
       label: 'Page',
@@ -109,7 +110,7 @@ export default function TrafficPage() {
     },
   ];
 
-  const refColumns = [
+  const refColumns: DataTableProps<ReferrerEntry>['columns'] = [
     {
       key: 'source',
       label: 'Source',

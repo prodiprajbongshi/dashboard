@@ -5,6 +5,7 @@ import AreaChartWidget from '@/components/charts/AreaChart';
 import BarChartWidget from '@/components/charts/BarChart';
 import LineChartWidget from '@/components/charts/LineChart';
 import DataTable from '@/components/dashboard/DataTable';
+import type { DataTableProps } from '@/components/dashboard/DataTable';
 import DateRangePicker from '@/components/dashboard/DateRangePicker';
 import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
@@ -17,7 +18,7 @@ import { Download } from 'lucide-react';
 export default function RevenuePage() {
   const { range, selectedOption, setOption } = useDateRange('30d');
 
-  const columns = [
+  const columns: DataTableProps<RevenueEntry>['columns'] = [
     { key: 'customer', label: 'Customer', sortable: true,
       render: (r: RevenueEntry) => <span style={{ fontWeight: 600, color: '#e2e8f0' }}>{r.customer}</span> },
     { key: 'plan', label: 'Plan', sortable: true,
@@ -103,12 +104,12 @@ export default function RevenuePage() {
 
       <div className="glass-card" style={{ padding: 24 }}>
         <div style={{ fontSize: 15, fontWeight: 700, color: '#f1f5f9', marginBottom: 20 }}>Revenue by Customer</div>
-        <DataTable
-          columns={columns as Parameters<typeof DataTable>[0]['columns']}
-          data={mockRevenueEntries as unknown as Record<string, unknown>[]}
+        <DataTable<RevenueEntry>
+          columns={columns}
+          data={mockRevenueEntries}
           rowKey="id"
           searchable
-          searchKeys={['customer', 'plan', 'country'] as never[]}
+          searchKeys={['customer', 'plan', 'country']}
           pageSize={8}
         />
       </div>
